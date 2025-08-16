@@ -1,0 +1,13 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1755361918" />
+    <testcase name="test_basic_response" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="11" time="0.0006883144378662109" sim_time_ns="110.001" ratio_time="159812.1351936266">
+      <failure message="Test failed with RANDOM_SEED=1755361918" />
+    </testcase>
+    <testcase name="test_multiple_requests" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="71" time="0.00036406517028808594" sim_time_ns="120.001" ratio_time="329614.0630674525">
+      <failure message="Test failed with RANDOM_SEED=1755361918" />
+    </testcase>
+    <testcase name="test_no_response_without_valid" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="120" time="0.00041484832763671875" sim_time_ns="160.00099999999998" ratio_time="385685.5369563218" />
+    <testcase name="test_random_data" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="152" time="0.0013799667358398438" sim_time_ns="580.001" ratio_time="420300.7108334485" />
+  </testsuite>
+</testsuites>

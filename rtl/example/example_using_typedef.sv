@@ -1,5 +1,3 @@
-`include "common/example_typedef.sv"
-
 module example_using_typedef #(
     parameter DATA_WIDTH    = 32
 ) (
@@ -26,6 +24,9 @@ module example_using_typedef #(
         counter_b           = counter_r;
         counter_active_b    = counter_active_r;
 
+        s2m.response        = '0;
+        s2m.response_valid  = '0;
+
         if (m2s.request_valid)
         begin
             data_b              = m2s.request;
@@ -38,7 +39,7 @@ module example_using_typedef #(
             counter_b   = counter_r + 1'b1;
         end
 
-        if (counter_active_r == 'h4)
+        if (counter_r == 'd4)
         begin
             counter_active_b    = '0;
             s2m.response        = data_r;
