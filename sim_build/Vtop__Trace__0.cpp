@@ -29,36 +29,24 @@ void Vtop___024root__trace_chg_0_sub_0(Vtop___024root* vlSelf, VerilatedFst::Buf
     bufp->chgBit(oldp+3,(vlSelfRef.m2s_request_valid));
     bufp->chgIData(oldp+4,(vlSelfRef.s2m_response),32);
     bufp->chgBit(oldp+5,(vlSelfRef.s2m_response_valid));
-    bufp->chgBit(oldp+6,(vlSelfRef.example_using_typedef_tb__DOT__clk));
-    bufp->chgBit(oldp+7,(vlSelfRef.example_using_typedef_tb__DOT__res_n));
-    bufp->chgIData(oldp+8,(vlSelfRef.example_using_typedef_tb__DOT__m2s_request),32);
-    bufp->chgBit(oldp+9,(vlSelfRef.example_using_typedef_tb__DOT__m2s_request_valid));
-    bufp->chgIData(oldp+10,(vlSelfRef.example_using_typedef_tb__DOT__s2m_response),32);
-    bufp->chgBit(oldp+11,(vlSelfRef.example_using_typedef_tb__DOT__s2m_response_valid));
-    bufp->chgIData(oldp+12,(vlSelfRef.example_using_typedef_tb__DOT__m2s_struct
-                            .__PVT__request),32);
-    bufp->chgBit(oldp+13,(vlSelfRef.example_using_typedef_tb__DOT__m2s_struct
-                          .__PVT__request_valid));
-    bufp->chgIData(oldp+14,(vlSelfRef.example_using_typedef_tb__DOT__s2m_struct
-                            .__PVT__response),32);
-    bufp->chgBit(oldp+15,(vlSelfRef.example_using_typedef_tb__DOT__s2m_struct
-                          .__PVT__response_valid));
-    bufp->chgBit(oldp+16,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__clk));
-    bufp->chgBit(oldp+17,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__res_n));
-    bufp->chgIData(oldp+18,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__m2s
-                            .__PVT__request),32);
-    bufp->chgBit(oldp+19,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__m2s
-                          .__PVT__request_valid));
-    bufp->chgIData(oldp+20,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__s2m
-                            .__PVT__response),32);
-    bufp->chgBit(oldp+21,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__s2m
-                          .__PVT__response_valid));
-    bufp->chgIData(oldp+22,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__data_b),32);
-    bufp->chgIData(oldp+23,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__data_r),32);
-    bufp->chgCData(oldp+24,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__counter_b),3);
-    bufp->chgCData(oldp+25,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__counter_r),3);
-    bufp->chgBit(oldp+26,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__counter_active_b));
-    bufp->chgBit(oldp+27,(vlSelfRef.example_using_typedef_tb__DOT__dut_I__DOT__counter_active_r));
+    bufp->chgBit(oldp+6,(vlSelfRef.example_using_interface_tb__DOT__clk));
+    bufp->chgBit(oldp+7,(vlSelfRef.example_using_interface_tb__DOT__res_n));
+    bufp->chgIData(oldp+8,(vlSelfRef.example_using_interface_tb__DOT__m2s_request),32);
+    bufp->chgBit(oldp+9,(vlSelfRef.example_using_interface_tb__DOT__m2s_request_valid));
+    bufp->chgIData(oldp+10,(vlSelfRef.example_using_interface_tb__DOT__s2m_response),32);
+    bufp->chgBit(oldp+11,(vlSelfRef.example_using_interface_tb__DOT__s2m_response_valid));
+    bufp->chgBit(oldp+12,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__clk));
+    bufp->chgBit(oldp+13,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__res_n));
+    bufp->chgIData(oldp+14,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__data_b),32);
+    bufp->chgIData(oldp+15,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__data_r),32);
+    bufp->chgCData(oldp+16,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__counter_b),3);
+    bufp->chgCData(oldp+17,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__counter_r),3);
+    bufp->chgBit(oldp+18,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__counter_active_b));
+    bufp->chgBit(oldp+19,(vlSelfRef.example_using_interface_tb__DOT__dut_I__DOT__counter_active_r));
+    bufp->chgIData(oldp+20,(vlSymsp->TOP__example_using_interface_tb__DOT__example_i.request),32);
+    bufp->chgIData(oldp+21,(vlSymsp->TOP__example_using_interface_tb__DOT__example_i.response),32);
+    bufp->chgBit(oldp+22,(vlSymsp->TOP__example_using_interface_tb__DOT__example_i.request_valid));
+    bufp->chgBit(oldp+23,(vlSymsp->TOP__example_using_interface_tb__DOT__example_i.response_valid));
 }
 
 void Vtop___024root__trace_cleanup(void* voidSelf, VerilatedFst* /*unused*/) {

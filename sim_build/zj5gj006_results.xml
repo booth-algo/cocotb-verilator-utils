@@ -1,9 +1,0 @@
-<testsuites name="results">
-  <testsuite name="all" package="all">
-    <property name="random_seed" value="1755362008" />
-    <testcase name="test_basic_response" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="11" time="0.0009050369262695312" sim_time_ns="110.001" ratio_time="121543.10703477345" />
-    <testcase name="test_multiple_requests" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="71" time="0.0009539127349853516" sim_time_ns="390.001" ratio_time="408843.4777065733" />
-    <testcase name="test_no_response_without_valid" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="120" time="0.0003991127014160156" sim_time_ns="160.00100000000003" ratio_time="400891.7767646357" />
-    <testcase name="test_random_data" classname="tb.example.test_example_using_typedef" file="/Users/kev/cocotb-verilator-utils/tb/example/test_example_using_typedef.py" lineno="152" time="0.0013401508331298828" sim_time_ns="580.0009999999999" ratio_time="432787.851681907" />
-  </testsuite>
-</testsuites>

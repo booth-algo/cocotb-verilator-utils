@@ -7,7 +7,6 @@ verilator.o: \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/verilated_types.h \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/verilated_funcs.h \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/vltstd/svdpi.h \
-  Vtop___024unit.h \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/verilated_vpi.h \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/verilated_syms.h \
   /opt/homebrew/Cellar/verilator/5.038/share/verilator/include/verilated_sym_props.h \

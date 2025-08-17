@@ -16,7 +16,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , s2m_response_valid{vlSymsp->TOP.s2m_response_valid}
     , m2s_request{vlSymsp->TOP.m2s_request}
     , s2m_response{vlSymsp->TOP.s2m_response}
-    , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
+    , __PVT__example_using_interface_tb__DOT__example_i{vlSymsp->TOP.__PVT__example_using_interface_tb__DOT__example_i}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

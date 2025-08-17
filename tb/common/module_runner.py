@@ -119,7 +119,7 @@ class YamlConfig:
         modules = self.config.get('modules', {})
 
         if module_name not in modules:
-            logger.error(f"Module '{module_name}' not found")  # Fixed missing quote
+            logger.error(f"Module '{module_name}' not found")
             return None
 
         return ModuleConfig(module_name, modules[module_name], self)
@@ -138,7 +138,7 @@ class YamlConfig:
 
         if suite_name not in test_suites:
             logger.error(f"Test suite '{suite_name}' not found")
-            return []  # Fixed: was returning None
+            return []
 
         return test_suites[suite_name].get('tests', [])
 

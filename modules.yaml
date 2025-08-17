@@ -47,11 +47,24 @@ tests:
         defines:
           TEST_BASIC: 1
 
+  test_example_using_interface:
+    description: "Test interface-based example"
+    target_module: "example_using_interface"
+    testbench:
+      wrapper: "tb/example/example_using_interface_tb.sv"
+      toplevel: "example_using_interface_tb"
+      cocotb_module: "tb.example.test_example_using_interface"
+    test_variants:
+      - name: "basic"
+        defines:
+          TEST_BASIC: 1
+
 test_suites:
   unit_tests:
     description: "All unit tests"
     tests:
       - "test_example_using_typedef"
+      - "test_example_using_interface"
 
 config:
   simulator: "verilator"
@@ -68,6 +81,11 @@ config:
       - "-std=c++17"
       - "-LDFLAGS"
       - "-std=c++17"
+
+  vcd:
+    enable: true
+    filename: "dump.vcd"
+    depth: 99
 
   global_defines:
     SIMULATION: 1

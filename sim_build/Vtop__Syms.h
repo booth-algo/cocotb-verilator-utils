@@ -15,7 +15,7 @@
 
 // INCLUDE MODULE CLASSES
 #include "Vtop___024root.h"
-#include "Vtop___024unit.h"
+#include "Vtop_example_if.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
 
@@ -31,11 +31,13 @@ class alignas(VL_CACHE_LINE_BYTES)Vtop__Syms final : public VerilatedSyms {
 
     // MODULE INSTANCE STATE
     Vtop___024root                 TOP;
+    Vtop_example_if                TOP__example_using_interface_tb__DOT__example_i;
 
     // SCOPE NAMES
     VerilatedScope __Vscope_TOP;
-    VerilatedScope __Vscope_example_using_typedef_tb;
-    VerilatedScope __Vscope_example_using_typedef_tb__dut_I;
+    VerilatedScope __Vscope_example_using_interface_tb;
+    VerilatedScope __Vscope_example_using_interface_tb__dut_I;
+    VerilatedScope __Vscope_example_using_interface_tb__example_i;
 
     // SCOPE HIERARCHY
     VerilatedHierarchy __Vhier;

@@ -14,7 +14,7 @@
 class Vtop__Syms;
 class Vtop___024root;
 class VerilatedFstC;
-#include "Vtop___024unit.h"
+class Vtop_example_if;
 
 
 // This class is the main interface to the Verilated model
@@ -42,7 +42,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop VL_NOT_FINAL : public VerilatedModel {
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vtop___024unit* const __PVT____024unit;
+    Vtop_example_if* const __PVT__example_using_interface_tb__DOT__example_i;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

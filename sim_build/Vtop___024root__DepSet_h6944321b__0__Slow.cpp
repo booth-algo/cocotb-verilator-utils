@@ -46,7 +46,7 @@ VL_ATTR_COLD void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
             Vtop___024root___dump_triggers__stl(vlSelf);
 #endif
-            VL_FATAL_MT("/Users/kev/cocotb-verilator-utils/tb/example/example_using_typedef_tb.sv", 1, "", "Settle region did not converge.");
+            VL_FATAL_MT("/Users/kev/cocotb-verilator-utils/tb/example/example_using_interface_tb.sv", 1, "", "Settle region did not converge.");
         }
         __VstlIterCount = ((IData)(1U) + __VstlIterCount);
         __VstlContinue = 0U;
@@ -158,27 +158,19 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->m2s_request_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 2071901410876432842ull);
     vlSelf->s2m_response = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 15828161343962676133ull);
     vlSelf->s2m_response_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 2653560739349784382ull);
-    vlSelf->example_using_typedef_tb__DOT__clk = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12126951971273111874ull);
-    vlSelf->example_using_typedef_tb__DOT__res_n = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15446410485954498443ull);
-    vlSelf->example_using_typedef_tb__DOT__m2s_request = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 8174121377901335091ull);
-    vlSelf->example_using_typedef_tb__DOT__m2s_request_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13777124095620557513ull);
-    vlSelf->example_using_typedef_tb__DOT__s2m_response = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 17981914879460725200ull);
-    vlSelf->example_using_typedef_tb__DOT__s2m_response_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12058237233987987990ull);
-    vlSelf->example_using_typedef_tb__DOT__m2s_struct.__PVT__request = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 3630873213247995174ull);
-    vlSelf->example_using_typedef_tb__DOT__m2s_struct.__PVT__request_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3630873213247995174ull);
-    vlSelf->example_using_typedef_tb__DOT__s2m_struct.__PVT__response = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11160816167839561082ull);
-    vlSelf->example_using_typedef_tb__DOT__s2m_struct.__PVT__response_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11160816167839561082ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__clk = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14912448448588283379ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__res_n = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13841393962989404640ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__m2s.__PVT__request = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11162793252958764812ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__m2s.__PVT__request_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11162793252958764812ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__s2m.__PVT__response = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2398854039196077257ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__s2m.__PVT__response_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 2398854039196077257ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__data_b = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 164498539336891568ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__data_r = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 3213009695105706483ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__counter_b = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9788792507671083585ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__counter_r = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4086885042281624023ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__counter_active_b = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13270901412381552830ull);
-    vlSelf->example_using_typedef_tb__DOT__dut_I__DOT__counter_active_r = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11804662912396648364ull);
+    vlSelf->example_using_interface_tb__DOT__clk = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3142149158906826101ull);
+    vlSelf->example_using_interface_tb__DOT__res_n = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7871362240766472182ull);
+    vlSelf->example_using_interface_tb__DOT__m2s_request = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 16054975196670654692ull);
+    vlSelf->example_using_interface_tb__DOT__m2s_request_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4779257761192384598ull);
+    vlSelf->example_using_interface_tb__DOT__s2m_response = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 8479208831323060924ull);
+    vlSelf->example_using_interface_tb__DOT__s2m_response_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4185905636322209849ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__clk = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9795422602102447216ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__res_n = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3803314481851901330ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__data_b = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 15907113649319697362ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__data_r = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 10069659019943931405ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__counter_b = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 1944935945630434363ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__counter_r = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 9513881621539830081ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__counter_active_b = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14500007324865905047ull);
+    vlSelf->example_using_interface_tb__DOT__dut_I__DOT__counter_active_r = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4027135827249296054ull);
     vlSelf->__Vtrigprevexpr___TOP__clk__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9526919608049418986ull);
 }
