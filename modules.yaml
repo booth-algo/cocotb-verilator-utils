@@ -74,7 +74,6 @@ config:
   verilator:
     flags:
       - "--trace"
-      - "--trace-fst"
       - "--trace-structs"
       - "--trace-params"
       - "-CFLAGS"

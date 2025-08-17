@@ -2,3 +2,7 @@
 .vscode/
 sim_build/
 *__pycache__
+run_dir/
+*.fst
+*.xml
+*.vcd

@@ -1,12 +1,16 @@
 """
-Module runner reads the YAML config file and sets up cocotb tests
+Module runner reads the YAML config file and sets up cocotb tests with VCD support
+Based on working cocotb.runner pattern
 """
 
 import os
 import logging
 import yaml
+import shutil
 from typing import Dict, List, Any, Optional
 from pathlib import Path
+
+from cocotb.runner import get_runner, get_results
 
 logger = logging.getLogger(__name__)
 
@@ -153,7 +157,7 @@ class YamlConfig:
 
 def run_test_from_yaml(test_name: str, variant: str = None, config_file: str = "modules.yaml") -> int:
     """
-    Runs a test specified in the YAML config
+    Runs a test specified in the YAML config using cocotb.runner
 
     Args:
         test_name: Name of the test to run
@@ -163,12 +167,6 @@ def run_test_from_yaml(test_name: str, variant: str = None, config_file: str = "
     Returns:
         0 if successful, 1 if failed
     """
-
-    try:
-        from cocotb_test.simulator import run
-    except ImportError:
-        logger.error("cocotb-test not installed. Install with: pip install cocotb-test")
-        return 1
 
     yaml_config = YamlConfig(config_file)
     test_config = yaml_config.get_test(test_name)
@@ -183,6 +181,9 @@ def run_test_from_yaml(test_name: str, variant: str = None, config_file: str = "
     global_config = yaml_config.config.get('config', {})
     simulator = global_config.get('simulator', 'verilator')
     global_defines = global_config.get('global_defines', {})
+
+    vcd_config = global_config.get('vcd', {})
+    vcd_enabled = vcd_config.get('enable', False)
 
     variants_to_run = test_config.test_variants
     if variant:
@@ -199,41 +200,102 @@ def run_test_from_yaml(test_name: str, variant: str = None, config_file: str = "
         parameters = variant_config.get('parameters', {})
         defines = {**global_defines, **variant_config.get('defines', {})}
 
-        # Additional Verilator flags if needed
-        extra_args = []
+        test_dir = Path(f"run_dir/{test_name}_{variant_name}")
+        test_dir.mkdir(parents=True, exist_ok=True)
+
+        run_dir_root = Path("run_dir")
+        run_dir_root.mkdir(parents=True, exist_ok=True)
+
+        cocotb_module_parts = test_config.cocotb_module.split('.')
+        test_files_dir = Path('.').joinpath(*cocotb_module_parts[:-1])
+
+        build_args = [
+            "-Wno-GENUNNAMED",
+            "-Wno-WIDTHEXPAND",
+            "-Wno-WIDTHTRUNC",
+            "-Wno-UNOPTFLAT",
+            "--assert",
+            "--stats",
+            "-O2",
+            "-build-jobs", "8",
+            "-Wno-fatal",
+            "-Wno-lint",
+            "-Wno-style",
+        ]
+
         if simulator == 'verilator':
             verilator_config = global_config.get('verilator', {})
-            extra_args.extend(verilator_config.get('flags', []))
+            custom_flags = verilator_config.get('flags', [])
+            build_args.extend(custom_flags)
 
-            # Add project root to include paths automatically
-            project_root = os.getcwd()
-            extra_args.extend([
-                f"-I{project_root}",
-                f"-I{project_root}/rtl",     # This should be enough!
-            ])
-
-        test_dir = f"run_dir/{test_name}_{variant_name}"
+        project_root = Path.cwd()
+        includes = [
+            str(project_root),
+            str(project_root / "rtl"),
+        ]
 
         try:
+            runner = get_runner(simulator)
+
             logger.info(f'Running CocoTB test:')
             logger.info(f"  Sources: {sources}")
             logger.info(f"  Toplevel: {test_config.testbench_toplevel}")
             logger.info(f"  Module: {test_config.cocotb_module}")
             logger.info(f"  Parameters: {parameters}")
             logger.info(f"  Defines: {defines}")
-            logger.info(f"  Extra args: {extra_args}")
+            logger.info(f"  Build args: {build_args}")
             logger.info(f"  Test dir: {test_dir}")
+            logger.info(f"  VCD enabled: {vcd_enabled}")
 
-            run(
+            runner.build(
                 verilog_sources=sources,
-                toplevel=test_config.testbench_toplevel,
-                module=test_config.cocotb_module,
+                includes=includes,
+                hdl_toplevel=test_config.testbench_toplevel,
+                build_args=build_args,
                 parameters=parameters,
                 defines=defines,
-                simulator=simulator,
-                extra_args=extra_args,
-                test_dir=test_dir,
+                build_dir=test_dir,
+                waves=vcd_enabled
             )
+
+            results_xml_path = runner.test(
+                hdl_toplevel=test_config.testbench_toplevel,
+                hdl_toplevel_lang="verilog",
+                test_module=test_config.cocotb_module,
+                test_dir=str(run_dir_root),
+                build_dir=test_dir,
+                waves=vcd_enabled
+            )
+
+            try:
+                if results_xml_path and Path(results_xml_path).exists():
+                    num_tests, num_failed = get_results(Path(results_xml_path))
+                    if num_failed > 0:
+                        logger.error(f"✗ Test {test_name} variant {variant_name} FAILED: {num_failed} out of {num_tests} test(s) failed")
+                        failed_variants.append(f"{test_name}_{variant_name}")
+                    else:
+                        logger.info(f"✓ Test {test_name} variant {variant_name} PASSED: {num_tests} test(s) passed")
+                else:
+                    logger.error(f"✗ Test {test_name} variant {variant_name} FAILED: Results XML file not found")
+                    failed_variants.append(f"{test_name}_{variant_name}")
+            except Exception as xml_error:
+                logger.error(f"✗ Test {test_name} variant {variant_name} FAILED: Could not parse results: {xml_error}")
+                failed_variants.append(f"{test_name}_{variant_name}")
+
+            if vcd_enabled:
+                dump_extensions = ['.vcd', '.fst', '.ghw']
+                for ext in dump_extensions:
+                    dump_files = list(run_dir_root.glob(f'*{ext}'))
+                    for dump_file in dump_files:
+                        new_name = f"{test_name}_{variant_name}{ext}"
+                        dest_path = run_dir_root / new_name
+
+                        try:
+                            shutil.copy(str(dump_file), str(dest_path))
+                            logger.info(f"Waveform saved: {new_name}")
+                        except Exception as e:
+                            logger.warning(f"Could not copy dump file {dump_file}: {e}")
+
             logger.info(f"✓ Test {test_name} variant {variant_name} PASSED")
 
         except Exception as e:
@@ -318,6 +380,14 @@ def list_available_targets(config_file: str = "modules.yaml") -> None:
         for suite in yaml_config.list_test_suites():
             suite_config = test_suites[suite]
             print(f"  {suite}: {suite_config.get('description', 'No description')}")
+
+        print("\n=== VCD Configuration ===")
+        vcd_config = yaml_config.config.get('config', {}).get('vcd', {})
+        if vcd_config.get('enable', False):
+            print(f"  VCD dumping: ENABLED")
+            print(f"  Trace files will be saved in build directories")
+        else:
+            print(f"  VCD dumping: DISABLED")
 
     except Exception as e:
         print(f"Error loading configuration: {e}")
