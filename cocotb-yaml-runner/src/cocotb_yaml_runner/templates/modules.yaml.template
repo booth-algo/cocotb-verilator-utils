@@ -1,0 +1,69 @@
+# modules.yaml - YAML-based test configuration
+# This file defines your HDL modules, tests, and build configuration
+
+libraries:
+  # Define reusable libraries of SystemVerilog files
+  common_types:
+    description: "Common SystemVerilog types and definitions"
+    sources:
+      - "rtl/common/my_typedef.sv"
+
+  common_interfaces:
+    description: "Common SystemVerilog interfaces"
+    sources:
+      - "rtl/common/my_if.sv"
+
+modules:
+  # Define your HDL modules and their dependencies
+  my_module:
+    description: "Example module using typedef"
+    sources:
+      - "rtl/my_module.sv"
+    deps:
+      - "common_types"
+    toplevel: "my_module"
+
+tests:
+  # Define your test configurations
+  test_my_module:
+    description: "Test my module"
+    target_module: "my_module"
+    testbench:
+      wrapper: "tb/my_module_tb.sv"
+      toplevel: "my_module_tb"
+      cocotb_module: "tb.test_my_module"
+    test_variants:
+      - name: "basic"
+        defines:
+          TEST_BASIC: 1
+
+test_suites:
+  # Group tests together
+  unit_tests:
+    description: "All unit tests"
+    tests:
+      - "test_my_module"
+
+config:
+  # Global simulation configuration
+  simulator: "verilator"
+  default_timescale: "1ns/1ps"
+  default_language: "SystemVerilog"
+
+  verilator:
+    flags:
+      - "--trace"
+      - "--trace-structs"
+      - "--trace-params"
+      - "-CFLAGS"
+      - "-std=c++17"
+      - "-LDFLAGS"
+      - "-std=c++17"
+
+  vcd:
+    enable: true
+    filename: "dump.vcd"
+    depth: 99
+
+  global_defines:
+    SIMULATION: 1

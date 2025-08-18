@@ -6,3 +6,4 @@ run_dir/
 *.fst
 *.xml
 *.vcd
+.tox/
