@@ -1,0 +1,41 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Mon Aug 25 21:08:18 2025
+[*]
+[dumpfile] "/Users/kev/cocotb-verilator-utils/dump.vcd"
+[dumpfile_mtime] "Mon Aug 25 21:06:55 2025"
+[dumpfile_size] 3413
+[savefile] "/Users/kev/cocotb-verilator-utils/test.gtkw"
+[timestart] 0
+[size] 1470 890
+[pos] -1 -1
+*-16.000000 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[treeopen] example_using_interface_tb.
+[sst_width] 255
+[signals_width] 161
+[sst_expanded] 1
+[sst_vpaned_height] 260
+@28
+example_using_interface_tb.dut_I.clk
+example_using_interface_tb.dut_I.counter_active_b
+example_using_interface_tb.dut_I.counter_active_r
+example_using_interface_tb.dut_I.counter_b[2:0]
+example_using_interface_tb.dut_I.counter_r[2:0]
+@22
+example_using_interface_tb.dut_I.data_b[31:0]
+example_using_interface_tb.dut_I.data_r[31:0]
+@28
+example_using_interface_tb.dut_I.res_n
+@200
+-
+-interface
+@22
+example_using_interface_tb.example_i.request[31:0]
+@28
+example_using_interface_tb.example_i.request_valid
+@22
+example_using_interface_tb.example_i.response[31:0]
+@28
+example_using_interface_tb.example_i.response_valid
+[pattern_trace] 1
+[pattern_trace] 0

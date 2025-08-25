@@ -9,4 +9,3 @@ src/cocotb_yaml_runner.egg-info/dependency_links.txt
 src/cocotb_yaml_runner.egg-info/entry_points.txt
 src/cocotb_yaml_runner.egg-info/requires.txt
 src/cocotb_yaml_runner.egg-info/top_level.txt
-tests/test_runner.py

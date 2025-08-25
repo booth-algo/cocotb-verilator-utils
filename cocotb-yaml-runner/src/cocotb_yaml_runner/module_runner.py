@@ -258,14 +258,24 @@ def run_test_from_yaml(test_name: str, variant: str = None, config_file: str = "
                 waves=vcd_enabled
             )
 
-            results_xml_path = runner.test(
-                hdl_toplevel=test_config.testbench_toplevel,
-                hdl_toplevel_lang="verilog",
-                test_module=test_config.cocotb_module,
-                test_dir=str(run_dir_root),
-                build_dir=test_dir,
-                waves=vcd_enabled
-            )
+            original_cwd = Path.cwd()
+
+            try:
+                os.chdir(project_root)
+                logger.info(f"Changed working directory to: {project_root}")
+
+                results_xml_path = runner.test(
+                    hdl_toplevel=test_config.testbench_toplevel,
+                    hdl_toplevel_lang="verilog",
+                    test_module=test_config.cocotb_module,
+                    test_dir=str(project_root),
+                    build_dir=str(test_dir),
+                    waves=vcd_enabled
+                )
+
+            finally:
+                os.chdir(original_cwd)
+                logger.info(f"Restored working directory to: {original_cwd}")
 
             try:
                 if results_xml_path and Path(results_xml_path).exists():
