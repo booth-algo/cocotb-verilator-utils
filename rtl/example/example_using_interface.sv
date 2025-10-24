@@ -1,5 +1,3 @@
-`include "common/example_if.sv"
-
 module example_using_interface #(
     parameter DATA_WIDTH    = 32
 ) (
@@ -8,7 +6,6 @@ module example_using_interface #(
 
     example_if.slave    example_i
 );
-
 
     // Slave module that responds with same data 4 cycles later
 
@@ -22,9 +19,12 @@ module example_using_interface #(
 
     always_comb
     begin
-        data_b              = data_r;
-        counter_b           = counter_r;
-        counter_active_b    = counter_active_r;
+        data_b                      = data_r;
+        counter_b                   = counter_r;
+        counter_active_b            = counter_active_r;
+
+        example_i.response          = '0;
+        example_i.response_valid    = '0;
 
         if (example_i.request_valid)
         begin
@@ -38,7 +38,7 @@ module example_using_interface #(
             counter_b   = counter_r + 1'b1;
         end
 
-        if (counter_active_r == 'h4)
+        if (counter_r == 'd4)
         begin
             counter_active_b            = '0;
             example_i.response          = data_r;

@@ -1,0 +1,39 @@
+[tox]
+skipsdist = True
+envlist = py311
+
+[testenv]
+setenv =
+    SIM = verilator
+    TIMEUNIT = "1ns"
+    TIMEPREC = "100ps"
+    PYTHONPATH = {toxinidir}
+
+deps =
+    pytest
+    pytest-xdist
+    cocotb-test >= 0.2.0
+    cocotb >= 1.8.0
+    PyYAML >= 5.4.1
+    cocotb-yaml-runner
+
+# Run all tests using pytest
+commands = pytest tb/ -v {posargs}
+
+# Run specific test using YAML config
+[testenv:test]
+commands = cocotb-yaml test {posargs}
+
+# Run test suite using YAML config
+[testenv:suite]
+commands = cocotb-yaml suite {posargs}
+
+# List all available targets from YAML
+[testenv:list]
+commands = cocotb-yaml list
+
+[pytest]
+testpaths = tb
+addopts = --import-mode prepend
+markers =
+    basic: Basic functionality tests

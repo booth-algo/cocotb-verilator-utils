@@ -1,0 +1,13 @@
+.vs
+.vscode/
+sim_build/
+*__pycache__
+run_dir/
+*.fst
+*.xml
+*.vcd
+.tox/
+dist/
+*.gtkw
+.pytest_cache/
+*.egg-info/
