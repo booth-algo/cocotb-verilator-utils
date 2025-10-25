@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cocotb-yaml-runner"
-version = "0.1.0"
+version = "0.1.1"
 description = "YAML-based test runner for cocotb with Verilator"
 readme = "README.md"
 authors = [{name = "Kevin Lau", email = "kevinlauofficial01@gmail.com"}]
 license = {text = "MIT"}
 requires-python = ">=3.8"
 dependencies = [
-    "cocotb",
+    "cocotb>=1.9.0,<2.0.0",
     "pyyaml",
 ]
 keywords = ["cocotb", "verilator", "systemverilog", "hdl", "testing"]
